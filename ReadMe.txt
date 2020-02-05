@@ -1,13 +1,9 @@
-My translation of "Ray Tracing in one Weekend" to FreeBASIC.
-Folders contain "milestone" releases.
+My translation of "Ray Tracing in one Weekend" to FreeBASIC.  Folders contain "milestone" releases.
 
-Some of the functions are imported from my 2016 path tracer and are different.
- 
- currently:
-
-Scattering - my own "metal" which coveres the entire range:  mirror to lambertian
+some of the functions are imported from my 2016 path tracer and are different.
+ - my "metal" coveres the entire mirror-to-lambertian range
 
 
-Note:  Glossy scenes look more vibrant compiled under GCC -O 2 or 3
+note:  Glossy scenes look more vibrant compiled under GCC -O 2 or 3
 
 
