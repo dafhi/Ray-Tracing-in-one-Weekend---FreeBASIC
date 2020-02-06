@@ -1,4 +1,7 @@
-My translation of "Ray Tracing in one Weekend" to FreeBASIC.  Folders contain "milestone" releases.
+My translation of "Ray Tracing in one Weekend" to FreeBASIC.
 
-some of the functions are imported from my 2016 path tracer and are different.
- - my "metal" coveres the entire mirror-to-lambertian range
+ From my 2016 path tracer:
+
+vec3 class.
+metal material covers the entire mirror-to-lambertian range,
+ quality improved by random_in_unit_sphere.
