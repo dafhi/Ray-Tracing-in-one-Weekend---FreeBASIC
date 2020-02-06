@@ -43,7 +43,7 @@ End Function
 function random_in_unit_sphere as vec3
   static as vec3 p
   do
-    p.x=rnd-.5: p.y=rnd-.5: p.z=rnd-.5
+    p=vec3(rnd-.5,rnd-.5,rnd-.5)
   Loop until p.squared_length < .5
   return 2*p
 End Function
@@ -147,7 +147,7 @@ func dielectric.scatter(r_in as ray, byref rec as hit_record, byref attenu as ve
       else
         reflect_prob = 1
       EndIf
-      ' ? " "  '' FreeBASIC print statement for debugging
+      ' ? " "  '' FreeBASIC print statement
     else
       if refract(r_in.direction, rec.normal, 1/ref_idx, scattered.direction) then
         reflect_prob = schlick(cosine/r_in.direction.length, ref_idx)
@@ -159,7 +159,7 @@ func dielectric.scatter(r_in as ray, byref rec as hit_record, byref attenu as ve
   
       scattered = ray(rec.p, reflect( r_in.direction, rec.normal ))
   
-  #else '' P. Shirley's version
+  #else '' Shirley's version
     static as vec3 outward_normal
     static as vec3 refracted, reflected
     static as float ni_over_nt
@@ -169,8 +169,6 @@ func dielectric.scatter(r_in as ray, byref rec as hit_record, byref attenu as ve
       ni_over_nt = ref_idx
       '? "inside"
       cosine = ref_idx * dot(r_in.direction, rec.normal) / r_in.direction.length
-      'cosine = dot(r_in.direction, rec.normal) / r_in.direction.length
-      'cosine = sqr(1 - ref_idx*ref_idx*(1-cosine*cosine))
     else
       '? "outside"
       outward_normal = rec.normal
@@ -183,7 +181,6 @@ func dielectric.scatter(r_in as ray, byref rec as hit_record, byref attenu as ve
     else
       reflect_prob = 1
     EndIf
-    'reflect_prob = 0
     
     if rnd < reflect_prob then
       scattered = ray(rec.p, reflected)

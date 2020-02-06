@@ -58,6 +58,7 @@ func sphere.hit( r as ray, t_min as float, t_max as float, byref rec as hit_reco
       temp = (-b + sqr(disc))/a
       dupl()
     EndIf
+    '? "no soup for you!" '' FreeBASIC print statement
     ret false
   
   #else
