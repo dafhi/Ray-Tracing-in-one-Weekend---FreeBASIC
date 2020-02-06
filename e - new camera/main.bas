@@ -1,7 +1,4 @@
-/'  -- New Camera
-
-  Different-looking than Peter Shirley's
-
+/'  -- New Camera -- 
 '/
 
 #include "camera.bas"
@@ -48,6 +45,7 @@ sub main
    var camera = tCamera( vec3(-2,2,1), 90, nx/ny )
    camera.look_at vec3(0,0,-1)
    camera.vup = vec3(0,1,0)
+   camera.vfov = 50
 
    def check_screenlock(arg_if, which) if (arg_if) then which
 
