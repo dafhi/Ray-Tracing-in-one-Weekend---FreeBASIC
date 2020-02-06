@@ -1,7 +1,4 @@
-/'  -- New Camera
-
-  Different-looking than Peter Shirley's
-
+/'  -- Defocus Blur
 '/
 
 #include "camera.bas"
