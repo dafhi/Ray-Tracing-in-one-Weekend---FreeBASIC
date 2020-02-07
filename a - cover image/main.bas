@@ -3,24 +3,6 @@
 
 #include "../inc/camera.bas"
 
-func color( r as ray, world as hittable ptr, depth int ) as vec3
-  static as hit_record rec
-  static as ray scattered
-  const BOUNCE_MAX = 50
-  
-  '' Modified
-  if world->hit( r, EPS, INF, rec ) then
-    dim as vec3 attenu = rec.mat_ptr->albedo
-    if depth < BOUNCE_MAX andalso rec.mat_ptr->scatter( r, rec, attenu, scattered ) then
-      ret attenu*color(scattered, world, depth+1)
-    else
-      ret attenu
-    endif
-  EndIf
-  ret sky(r)
-End Func
-
-
 func random_scene as hittable ptr
   var n = 500
   dim as hittable ptr ptr list = new hittable ptr[n+1]
@@ -56,6 +38,24 @@ func random_scene as hittable ptr
   Next
   return new hittable_list(list,i)
 end func
+
+func color( r as ray, world as hittable ptr, depth int ) as vec3
+  static as hit_record rec
+  static as ray scattered
+  const BOUNCE_MAX = 50
+  
+  '' Modified
+  if world->hit( r, EPS, INF, rec ) then
+    dim as vec3 attenu = rec.mat_ptr->albedo
+    if depth < BOUNCE_MAX andalso rec.mat_ptr->scatter( r, rec, attenu, scattered ) then
+      ret attenu*color(scattered, world, depth+1)
+    else
+      ret attenu
+    endif
+  EndIf
+  ret sky(r)
+
+End Func
 
 
 sub main
