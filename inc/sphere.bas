@@ -62,7 +62,6 @@ func sphere.hit( r as ray, t_min as float, t_max as float, byref rec as hit_reco
     ret false
   
   #else
-    r.direction.make_unit_vector
 
     if disc <= 0 then return 0
     
