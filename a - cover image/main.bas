@@ -75,7 +75,7 @@ sub main
    var lookat = vec3(0,0,0)
    
    var camera = tCamera( vec3(13,2,3)*1, 20, nx/ny )
-   camera.vup = vec3(0,1,0)
+
    camera.aperture = .1
    camera.focus_dist = 10
    camera.look_at vec3(0,0,0)
