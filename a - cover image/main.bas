@@ -18,19 +18,19 @@ func random_scene as hittable ptr
       var choose_mat = rnd
       var center = vec3(a+.9*rnd,.2,b+.9*rnd)
       if (center-vec3(4,.2,0)).length > .9 then
-        if choose_mat < .8 then '' diffuse
+        if choose_mat < .8 then
           
           list[i] = new sphere( _
-            center, .2, new lambertian(vec3(rnd*rnd,rnd*rnd,rnd*rnd)))
-        elseif choose_mat < .95 then '' metal
+            center, .2, new dielectric( _
+              1.5, vec3(1-rnd*rnd,1-rnd*rnd,1-rnd*rnd), rnd*rnd*rnd))
+        elseif choose_mat < .95 then
           
           list[i] = new sphere( _
             center, .2, new metal(.5*vec3(1+rnd,1+rnd,1+rnd),.5*rnd))
         else
           
           list[i] = new sphere( _
-            center, .2, new dielectric( _
-              1.5, vec3(1-rnd*rnd,1-rnd*rnd,1-rnd*rnd), rnd*rnd*rnd))
+            center, .2, new lambertian(vec3(rnd*rnd,rnd*rnd,rnd*rnd)))
         endif
         i += 1
       EndIf
@@ -41,10 +41,9 @@ end func
 
 func color( r as ray, world as hittable ptr, depth int ) as vec3
   static as hit_record rec
-  static as ray scattered
-  const BOUNCE_MAX = 50
+  static as ray scattered:  const BOUNCE_MAX = 50
   
-  '' Modified
+  ' Modified
   if world->hit( r, EPS, INF, rec ) then
     dim as vec3 attenu = rec.mat_ptr->albedo
     if depth < BOUNCE_MAX andalso rec.mat_ptr->scatter( r, rec, attenu, scattered ) then
@@ -65,7 +64,7 @@ sub main
    var scale = .5
    var   nx = 1200 * scale
    var   ny = 800 * scale
-   var   ns = 3
+   var   ns = 5
 
    const                 borderless = 8
    screenres nx, ny, 32',, borderless
