@@ -94,8 +94,8 @@ sub main
          wend
          show_pixel( col / ns )
       Next
-      if j mod 12=0 then kstr=inkey
-      if kstr<>"" then exit for: sleep 1 '' small rest every N scanlines
+      if j mod 12=0 then kstr=inkey: sleep 1 '' small rest every N scanlines
+      if kstr<>"" then exit for
    next j
 
    if kstr=chr(27) then exit sub
