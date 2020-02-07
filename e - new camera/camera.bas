@@ -7,8 +7,6 @@
 
 #include "../inc/sphere.bas"
 
-' S.O.L.I.D. programming
-
 type tBasicCamera
    decl property  vfov( as float )
    decl property  aspect( as float )
