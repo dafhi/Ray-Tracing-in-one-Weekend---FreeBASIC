@@ -1,7 +1,7 @@
 /'
+  Different looking from Peter Shirley's hollow glass sphere :\
 
-  Different-looking than Peter Shirley's hollow glass sphere :\
-
+  Imported my 2016 path tracer scatter func (improved by Shirley's random_in_unit_sphere)
 '/
 
 #include "camera.bas"
