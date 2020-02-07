@@ -91,7 +91,7 @@ type tCamera extends tBasicCamera
    decl csr( as vec3 = vec3(0,0,0), as float = 90, as float = 4/3 )
    decl sub    look_at( as vec3 )
    decl sub    move( as vec3 )
-   decl prop   vup( as vec3 )
+   decl sub    vup( as vec3 )
    decl prop   aperture( as float )
    decl prop   focus_dist( as float )
    decl prop   looking_from as vec3
@@ -130,9 +130,9 @@ sub tCamera.move( amount as vec3 )
    look_from origin + amount
 end sub
 
-prop tCamera.vup( in as vec3 )
+sub tCamera.vup( in as vec3 )
    finalize _look_at, in
-end prop
+end sub
 
 #Endif
 ' ------- camera

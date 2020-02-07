@@ -8,7 +8,7 @@ func color( r as ray, world as hittable ptr, depth int ) as vec3
   static as ray scattered
   const BOUNCE_MAX = 50
   
-  '' Modified
+  ' Modified
   if world->hit( r, EPS, INF, rec ) then
     dim as vec3 attenu = rec.mat_ptr->albedo
     if depth < BOUNCE_MAX andalso rec.mat_ptr->scatter( r, rec, attenu, scattered ) then
@@ -18,6 +18,7 @@ func color( r as ray, world as hittable ptr, depth int ) as vec3
     endif
   EndIf
   ret sky(r)
+  
 End Func
 
 
@@ -47,40 +48,27 @@ sub main
    var lookat = vec3(0,0,-1)
    
    var camera = tCamera( lookfrom, 20, nx/ny )
-   camera.vup = vec3(0,1,0)
    
    camera.look_at vec3(0,0,-1)
    camera.aperture = 2
-   'camera.vfov = 6
    camera.focus_dist = ((camera.looking_from - camera.looking_at).length)
 
-   def check_screenlock(arg_if, which) if (arg_if) then which
-
-   'var initial = 1
-   def lock_condition 0
-   
-   'for z sng = initial to initial + 6.2 step .01
-'      camera.look_from vec3(0,0,z)
-      check_screenlock( lock_condition, screenlock )
-      for j int = ny-1 to 0 step -1
-         for i int = 0 to nx-1
-            var col = vec3(0,0,0)
-            var s = 0: while s<ns
-               var u = (i+rnd-.5)/nx
-               var v = (j+rnd-.5)/ny
-               var r = camera.get_ray(u,v)
-               col += color(r, world, 0)
-               s += 1
-            wend
-            show_pixel( col / ns )
-         Next
-         if j mod 24=0 then kstr=inkey
-         if kstr<>"" then exit for
-      next j
-      check_screenlock( lock_condition, screenunlock )
-      'if kstr<>"" then exit for
-      : sleep 1 '' small rest every N scanlines
-   'next
+    for j int = ny-1 to 0 step -1
+       for i int = 0 to nx-1
+          var col = vec3(0,0,0)
+          var s = 0: while s<ns
+             var u = (i+rnd-.5)/nx
+             var v = (j+rnd-.5)/ny
+             var r = camera.get_ray(u,v)
+             col += color(r, world, 0)
+             s += 1
+          wend
+          show_pixel( col / ns )
+       Next
+       if j mod 24=0 then kstr=inkey
+       if kstr<>"" then exit for
+    next j
+    sleep 1 '' small rest every N scanlines
 
    if kstr=chr(27) then exit sub
    sleep
