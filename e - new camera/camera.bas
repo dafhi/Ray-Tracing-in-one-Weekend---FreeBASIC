@@ -2,15 +2,14 @@
 
 '/
 
-
 #ifndef CAMERAH
 #define CAMERAH
 
 #include "../inc/sphere.bas"
 
-'' S.O.L.I.D. programming
+' S.O.L.I.D. programming
+
 type tBasicCamera
-   
    decl property  vfov( as float )
    decl property  aspect( as float )
    decl sub       look_from( as vec3 )
@@ -35,22 +34,18 @@ property tBasicCamera.aspect( in as float )
    _aspect = in
    finalize _look_at, _vup
 end property
-
 property tBasicCamera.vfov( in as float )
    _vfov = in
    finalize _look_at, _vup
 end property
-
 sub tBasicCamera.look_from( ori as vec3 )
    origin = ori
    finalize _look_at, _vup
 end sub
-
 func tBasicCamera.get_ray( s as float, t as float ) as ray
    return ray( origin, _
     lower_left_corner + s*horizontal + t*vertical - origin )
 end func
-
 sub tBasicCamera.finalize( look_at as vec3, vup as vec3 )
    var theta = _vfov * tau / 360
    var half_height = tan(theta/2)
