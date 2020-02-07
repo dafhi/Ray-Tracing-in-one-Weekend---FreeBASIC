@@ -1,9 +1,6 @@
 /' -- camera.bas - 2020 Feb 3 - by dafhi
-
   
-  #includes for material and sphere also here
-
-'/
+  #includes for material and sphere also here -- '/
 
 #ifndef CAMERAH
 #define CAMERAH
