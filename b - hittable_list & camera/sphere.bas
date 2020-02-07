@@ -36,21 +36,20 @@ func sphere.hit( r as ray, t_min as float, t_max as float, byref rec as hit_reco
   static as float sqr_disc, disc
   
   var oc = r.origin - center
-  r.direction.make_unit_vector
 
-  'a = dot(r.direction, r.direction) '' dot
+  a = dot(r.direction, r.direction) '' dot
   b = dot(oc, r.direction)
   c = dot(oc, oc) - r2
 
-  disc = b*b - c'*a
+  disc = b*b - c*a
   if disc <= 0 then return 0
   
   sqr_disc = sqr(disc)
 
-  t2 = (-b + sqr_disc) '/ a
+  t2 = (-b + sqr_disc) / a
   if t2 < EPS then return 0
   
-  t1 = (-b - sqr_disc) '/ a
+  t1 = (-b - sqr_disc) / a
   if t1 >= t_max then  return 0
   
   #macro sphere_was_hit(_t)
