@@ -1,9 +1,5 @@
 /' -- camera.bas - 2020 Feb 3 - by dafhi
 
-  #include for material also here
-  
-  (at the end)
-
 '/
 
 
