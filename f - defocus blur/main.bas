@@ -65,10 +65,10 @@ sub main
           wend
           show_pixel( col / ns )
        Next
-       if j mod 24=0 then kstr=inkey
+       if j mod 24=0 then kstr=inkey: sleep 1 '' small rest every N scanlines
        if kstr<>"" then exit for
     next j
-    sleep 1 '' small rest every N scanlines
+    
 
    if kstr=chr(27) then exit sub
    sleep
