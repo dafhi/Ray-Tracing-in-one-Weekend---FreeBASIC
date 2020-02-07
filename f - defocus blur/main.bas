@@ -5,8 +5,7 @@
 
 func color( r as ray, world as hittable ptr, depth int ) as vec3
   static as hit_record rec
-  static as ray scattered
-  const BOUNCE_MAX = 50
+  static as ray scattered:  const BOUNCE_MAX = 50
   
   ' Modified
   if world->hit( r, EPS, INF, rec ) then
@@ -18,9 +17,8 @@ func color( r as ray, world as hittable ptr, depth int ) as vec3
     endif
   EndIf
   ret sky(r)
-  
-End Func
 
+End Func
 
 sub main
   
@@ -68,8 +66,7 @@ sub main
        if j mod 24=0 then kstr=inkey: sleep 1 '' small rest every N scanlines
        if kstr<>"" then exit for
     next j
-    
-
+  
    if kstr=chr(27) then exit sub
    sleep
 End Sub

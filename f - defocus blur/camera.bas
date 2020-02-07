@@ -17,9 +17,7 @@ func random_in_unit_disk as vec3
    return 2*p
 end func
 
-'' S.O.L.I.D. attempt
 type tBasicCamera
-   
    decl prop  vfov( as float )
    decl prop  aspect( as float )
    decl sub   look_from( as vec3 )
@@ -85,8 +83,8 @@ func tBasicCamera.get_ray( s as float, t as float ) as ray
       lower_left_corner + s*horizontal + t*vertical - origin - _offset)
 end func
 
-
-'' Main camera class
+/' -- Main camera class
+'/
 type tCamera extends tBasicCamera
    decl csr( as vec3 = vec3(0,0,0), as float = 90, as float = 4/3 )
    decl sub    look_at( as vec3 )
